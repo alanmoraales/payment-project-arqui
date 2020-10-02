@@ -2,5 +2,6 @@
 .idea/
 build/
 gradle/
+src/main/java/config
 gradlew
 gradlew.bat
