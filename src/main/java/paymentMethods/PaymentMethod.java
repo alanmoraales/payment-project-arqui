@@ -1,7 +1,9 @@
 package paymentMethods;
 
-import transactionInfo.ITransactionInfo;
-
 public interface PaymentMethod {
-    ITransactionInfo pay(float amount);
+    /**
+     *
+     * @return the transaction id
+     */
+    String pay(float amount);
 }
