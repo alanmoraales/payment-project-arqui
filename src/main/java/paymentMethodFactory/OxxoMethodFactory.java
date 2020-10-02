@@ -1,14 +1,16 @@
 package paymentMethodFactory;
 
+import paymentDetails.OxxoMethodDetails;
 import paymentDetails.PaymentDetails;
 import paymentMethods.CreditCardMethod;
 import paymentMethods.OxxoMethod;
 import paymentMethods.PaymentMethod;
 
-public class OxxoMethodFactory extends PaymentMethodFactory{
+public class OxxoMethodFactory implements PaymentMethodFactory{
 
-    public PaymentMethod factoryMethod(PaymentDetails details) {
-        return new OxxoMethod(details);
+    @Override
+    public PaymentMethod getInstance(PaymentDetails details) {
+        return new OxxoMethod((OxxoMethodDetails) details);
     }
 }
 
