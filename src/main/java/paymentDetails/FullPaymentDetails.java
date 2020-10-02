@@ -1,8 +1,5 @@
 package paymentDetails;
 
-import paymentMethodFactory.PaymentMethodFactory;
-import paymentMethods.PaymentMethod;
-
 public class FullPaymentDetails implements CreditCardMethodDetails, OxxoMethodDetails, PaymentDetails {
     @Override
     public long getCreditCardNumber() {
@@ -15,8 +12,13 @@ public class FullPaymentDetails implements CreditCardMethodDetails, OxxoMethodDe
     }
 
     @Override
-    public String getCreditCardExpirationDate() {
-        return null;
+    public int getCreditCardExpirationMonth() {
+        return 0;
+    }
+
+    @Override
+    public int getCreditCardExpirationYear() {
+        return 0;
     }
 
     @Override
@@ -40,7 +42,12 @@ public class FullPaymentDetails implements CreditCardMethodDetails, OxxoMethodDe
     }
 
     @Override
-    public void setCreditCardExpirationDate(String expirationDate) {
+    public void setCreditCardExpirationMonth(int month) {
+
+    }
+
+    @Override
+    public void setCreditCardExpirationYear(int year) {
 
     }
 
