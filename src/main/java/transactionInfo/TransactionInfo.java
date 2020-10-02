@@ -7,7 +7,7 @@ public class TransactionInfo implements ITransactionInfo {
     private String transactionId;
     private Date date;
     private String paymentConcept;
-    private float amount;
+    private double amount;
 
     public TransactionInfo() {
         this.clientName = null;
@@ -23,7 +23,7 @@ public class TransactionInfo implements ITransactionInfo {
     }
 
     @Override
-    public void setAmount(float amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -48,7 +48,7 @@ public class TransactionInfo implements ITransactionInfo {
     }
 
     @Override
-    public float getAmount() {
+    public double getAmount() {
         return this.amount;
     }
 
