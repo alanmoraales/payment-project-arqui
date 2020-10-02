@@ -4,5 +4,6 @@ import paymentDetails.PaymentDetails;
 import paymentMethods.PaymentMethod;
 
 public interface PaymentMethodFactory {
-    PaymentMethod getInstance(PaymentDetails details);
+    public abstract PaymentMethod getInstance(PaymentDetails details);
 }
+
