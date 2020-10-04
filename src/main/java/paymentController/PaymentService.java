@@ -1,44 +1,64 @@
 package paymentController;
 
+import paymentDetails.PaymentDetails;
+import paymentMethodFactory.CreditCardMethodFactory;
+import paymentMethodFactory.OxxoMethodFactory;
+import paymentMethodFactory.PaymentMethodFactory;
+import paymentMethods.PaymentMethod;
+
+import java.util.HashMap;
+
 public class PaymentService implements PaymentController {
+    private PaymentMethodFactory paymentMethod;
+    private PaymentDetails paymentDetails;
+    private HashMap<String, PaymentMethodFactory> paymentMethods;
+
+    public PaymentService(PaymentDetails paymentDetails, PaymentMethodFactory defaultPaymentMethod) {
+        this.paymentDetails = paymentDetails;
+        this.paymentMethod = defaultPaymentMethod;
+
+        this.paymentMethods.put("credit-card", new CreditCardMethodFactory());
+        this.paymentMethods.put("oxxo", new OxxoMethodFactory());
+    }
+
     @Override
     public void setPaymentMethod(String methodName) {
-        System.out.println("switching to: " + methodName);
+        this.paymentMethod = this.paymentMethods.get(methodName);
     }
 
     @Override
     public void addCreditCardNumber(String cardNumber) {
-        System.out.println("adding: " + cardNumber);
+        this.paymentDetails.setCreditCardNumber(cardNumber);
     }
 
     @Override
     public void addCreditCardOwnerName(String ownerName) {
-        System.out.println("the owner is: " + ownerName);
+        this.paymentDetails.setCreditCardOwnerName(ownerName);
     }
 
     @Override
     public void addCreditCardExpirationMonth(int month) {
-        System.out.println("expiration month:" + month);
+        this.paymentDetails.setCreditCardExpirationMonth(month);
     }
 
     @Override
     public void addCreditCardExpirationYear(int year) {
-        System.out.println("expiration year: " + year);
+        this.paymentDetails.setCreditCardExpirationYear(year);
     }
 
     @Override
     public void addCreditCardCVC(int cvc) {
-        System.out.println("cvc: " + cvc);
+        this.paymentDetails.setCreditCardCVC(String.valueOf(cvc));
     }
 
     @Override
     public void addUserPhoneNumber(long phoneNumber) {
-        System.out.println("phone number: " + phoneNumber);
+        this.paymentDetails.setPhoneNumber(phoneNumber);
     }
 
     @Override
     public String pay(double amount) {
-        System.out.println("paying: " + amount);
-        return null;
+        PaymentMethod paymentMethod = this.paymentMethod.getInstance(this.paymentDetails);
+        return paymentMethod.pay(amount);
     }
 }
