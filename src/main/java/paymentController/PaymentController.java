@@ -8,4 +8,5 @@ public interface PaymentController {
     void addCreditCardExpirationYear(int year);
     void addCreditCardCVC(int cvc);
     void addUserPhoneNumber(long phoneNumber);
+    String pay(double amount);
 }

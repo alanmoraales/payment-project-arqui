@@ -35,4 +35,10 @@ public class PaymentService implements PaymentController {
     public void addUserPhoneNumber(long phoneNumber) {
         System.out.println("phone number: " + phoneNumber);
     }
+
+    @Override
+    public String pay(double amount) {
+        System.out.println("paying: " + amount);
+        return null;
+    }
 }
