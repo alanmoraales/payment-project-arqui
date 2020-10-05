@@ -18,9 +18,7 @@ public class PayViewController {
     public void creaditCardNumer(String number){
         controller.addCreditCardNumber(number);
     }
-    public void ownerName(String name){
-        controller.addCreditCardOwnerName(name);
-    }
+    public void ownerName(String name){controller.addUserName(name);}
     public void month(int month){
         controller.addCreditCardExpirationMonth(month);
     }
