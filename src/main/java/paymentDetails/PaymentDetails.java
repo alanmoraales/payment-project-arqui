@@ -20,4 +20,5 @@ public interface PaymentDetails {
     void setCreditCardExpirationYear(int year);
     void setCreditCardCVC(String creditCardCVC);
     void setPhoneNumber(long phoneNumber);
+    String getCreditCardOwnerName();
 }

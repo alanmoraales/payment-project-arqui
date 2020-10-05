@@ -1,11 +1,16 @@
 package paymentController;
 
+import dao.TransactionInfoDao;
+import dao.TransactionInfoMongo;
 import paymentDetails.PaymentDetails;
 import paymentMethodFactory.CreditCardMethodFactory;
 import paymentMethodFactory.OxxoMethodFactory;
 import paymentMethodFactory.PaymentMethodFactory;
 import paymentMethods.PaymentMethod;
+import transactionInfo.ITransactionInfo;
+import transactionInfo.TransactionInfo;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class PaymentService implements PaymentController {
@@ -17,6 +22,7 @@ public class PaymentService implements PaymentController {
         this.paymentDetails = paymentDetails;
         this.paymentMethod = defaultPaymentMethod;
 
+        this.paymentMethods = new HashMap<>();
         this.paymentMethods.put("credit-card", new CreditCardMethodFactory());
         this.paymentMethods.put("oxxo", new OxxoMethodFactory());
     }
@@ -58,7 +64,19 @@ public class PaymentService implements PaymentController {
 
     @Override
     public String pay(double amount) {
+        TransactionInfoDao database = new TransactionInfoMongo();
         PaymentMethod paymentMethod = this.paymentMethod.getInstance(this.paymentDetails);
-        return paymentMethod.pay(amount);
+
+        String transactionId =  paymentMethod.pay(amount);
+
+        ITransactionInfo transactionInfo = new TransactionInfo();
+        transactionInfo.setAmount(amount);
+        transactionInfo.setClientName(this.paymentDetails.getCreditCardOwnerName());
+        transactionInfo.setDate(new Date());
+        transactionInfo.setPaymentConcept("Publicación de casa");
+        transactionInfo.setTransactionId(transactionId);
+        database.save(transactionInfo);
+
+        return transactionId;
     }
 }

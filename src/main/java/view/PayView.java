@@ -207,7 +207,7 @@ public class PayView extends JFrame{
 
         campoTelefonoOxxo = new JTextField();
         campoTelefonoOxxo.setBounds(30,260,180,30);
-        campos.add(campoTelefonoOxxo);
+        //campos.add(campoTelefonoOxxo);
         panel.add(campoTelefonoOxxo);
 
         //Por defecto pago de tarjeta
@@ -272,7 +272,7 @@ public class PayView extends JFrame{
     private void pagar(){
         if(verificarPagoTarjeta() == true){
             System.out.println("nice");
-            controller.setMethod("creditCard");
+            controller.setMethod("credit-card");
             controller.ownerName(campoTarjetaHabiente.getText());
             controller.creaditCardNumer(campoNumeroTarjeta.getText());
             controller.month(Integer.parseInt(campoFechaExpiracionMonth.getText()));
