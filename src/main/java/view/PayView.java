@@ -262,7 +262,7 @@ public class PayView extends JFrame{
         if(verificarPagoOxxo() == true){
             System.out.println("nice");
             controller.setMethod("oxxo");
-            controller.phoneNumber(Long.parseLong(numeroTelefonoOxxo.getText()));
+            controller.phoneNumber(numeroTelefonoOxxo.getText());
             controller.pay(550.50);
         }else{
             System.out.println("Llene todos los campos antes");
@@ -278,7 +278,7 @@ public class PayView extends JFrame{
             controller.month(Integer.parseInt(campoFechaExpiracionMonth.getText()));
             controller.year(Integer.parseInt(campoFechaExpiracionYear.getText()));
             controller.cvc(Integer.parseInt(campoCVC.getText()));
-            controller.phoneNumber(Long.parseLong(campoTelefonoTarjeta.getText()));
+            controller.phoneNumber(campoTelefonoTarjeta.getText());
             controller.pay(550.50);
         }else{
             System.out.println("Llene todos los campos antes");

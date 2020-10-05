@@ -28,6 +28,7 @@ public class TransactionInfoMongo implements TransactionInfoDao{
         try {
             Document doc = new Document("clientName", transactionInfo.getClientName())
                     .append("id", transactionInfo.getTransactionId())
+                    .append("paymentMethod", transactionInfo.getPaymentMethod())
                     .append("date", transactionInfo.getDate())
                     .append("concept", transactionInfo.getPaymentConcept())
                     .append("amount", transactionInfo.getAmount());

@@ -17,6 +17,7 @@ public class PaymentService implements PaymentController {
     private PaymentMethodFactory paymentMethod;
     private PaymentDetails paymentDetails;
     private HashMap<String, PaymentMethodFactory> paymentMethods;
+    private ITransactionInfo transactionInfo;
 
     public PaymentService(PaymentDetails paymentDetails, PaymentMethodFactory defaultPaymentMethod) {
         this.paymentDetails = paymentDetails;
@@ -25,11 +26,14 @@ public class PaymentService implements PaymentController {
         this.paymentMethods = new HashMap<>();
         this.paymentMethods.put("credit-card", new CreditCardMethodFactory());
         this.paymentMethods.put("oxxo", new OxxoMethodFactory());
+
+        this.transactionInfo = new TransactionInfo();
     }
 
     @Override
     public void setPaymentMethod(String methodName) {
         this.paymentMethod = this.paymentMethods.get(methodName);
+        this.transactionInfo.setPaymentMethod(methodName);
     }
 
     @Override
@@ -58,8 +62,13 @@ public class PaymentService implements PaymentController {
     }
 
     @Override
-    public void addUserPhoneNumber(long phoneNumber) {
+    public void addUserPhoneNumber(String phoneNumber) {
         this.paymentDetails.setPhoneNumber(phoneNumber);
+    }
+
+    @Override
+    public void addUserName(String userName) {
+        this.paymentDetails.setClientName(userName);
     }
 
     @Override
@@ -69,13 +78,12 @@ public class PaymentService implements PaymentController {
 
         String transactionId =  paymentMethod.pay(amount);
 
-        ITransactionInfo transactionInfo = new TransactionInfo();
-        transactionInfo.setAmount(amount);
-        transactionInfo.setClientName(this.paymentDetails.getCreditCardOwnerName());
-        transactionInfo.setDate(new Date());
-        transactionInfo.setPaymentConcept("Publicación de casa");
-        transactionInfo.setTransactionId(transactionId);
-        database.save(transactionInfo);
+        this.transactionInfo.setAmount(amount);
+        this.transactionInfo.setClientName(this.paymentDetails.getClientName());
+        this.transactionInfo.setDate(new Date());
+        this.transactionInfo.setPaymentConcept("Publicación de casa");
+        this.transactionInfo.setTransactionId(transactionId);
+        database.save(this.transactionInfo);
 
         return transactionId;
     }

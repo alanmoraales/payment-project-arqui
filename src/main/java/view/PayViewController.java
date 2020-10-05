@@ -30,7 +30,7 @@ public class PayViewController {
     public void cvc(int cvc){
         controller.addCreditCardCVC(cvc);
     }
-    public void phoneNumber(long phoneNumber){
+    public void phoneNumber(String phoneNumber){
         controller.addUserPhoneNumber(phoneNumber);
     }
     public void pay(double amount){

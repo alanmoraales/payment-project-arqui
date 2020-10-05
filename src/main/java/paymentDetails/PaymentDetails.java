@@ -3,7 +3,6 @@ package paymentDetails;
 public interface PaymentDetails {
     void setCreditCardNumber(String creditCardNumber);
     void setCreditCardOwnerName(String creditCardOwnerName);
-
     /**
      *
      * @param month card expiration month in the same format as the card
@@ -19,6 +18,7 @@ public interface PaymentDetails {
      */
     void setCreditCardExpirationYear(int year);
     void setCreditCardCVC(String creditCardCVC);
-    void setPhoneNumber(long phoneNumber);
-    String getCreditCardOwnerName();
+    void setPhoneNumber(String phoneNumber);
+    String getClientName();
+    void setClientName(String clientName);
 }
