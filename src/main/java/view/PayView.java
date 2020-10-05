@@ -87,27 +87,37 @@ public class PayView extends JFrame{
         JLabel usoHorario = new JLabel("Huso-horario deseado:");//inicializo con "profesores
         usoHorario.setBounds(300,70,150,30);
         panel.add(usoHorario);
+
+        //nombre de tarjeta-habiente
+        tarjetaHabiente = new JLabel("Nombre del tarjetahabiente");
+        tarjetaHabiente.setBounds(30, 130, 180, 30);
+        panel.add(tarjetaHabiente);
+
+        campoTarjetaHabiente = new JTextField();
+        campoTarjetaHabiente.setBounds(30,160,180,30);
+        campos.add(campoTarjetaHabiente);
+        panel.add(campoTarjetaHabiente);
     }
 
     private void tiposPago(){
         JLabel seleccion = new JLabel("Seleccione metodo de pago:");
-        seleccion.setBounds(30,140,180,30);
+        seleccion.setBounds(30,190,180,30);
         panel.add(seleccion);
 
         JButton tarjeta = new JButton("pago tarjeta");
-        tarjeta.setBounds(30,190,150,30);
+        tarjeta.setBounds(30,220,150,30);
         panel.add(tarjeta);
 
         pagar = new JButton("Pagar");
-        pagar.setBounds(400,380,80,30);
+        pagar.setBounds(400,410,80,30);
         panel.add(pagar);
 
         JButton oxxo = new JButton("pago oxxo");
-        oxxo.setBounds(300,190,150,30);
+        oxxo.setBounds(300,220,150,30);
         panel.add(oxxo);
 
         generarComprobante = new JButton("Generar comprobante");
-        generarComprobante.setBounds(30,300,180,30);
+        generarComprobante.setBounds(30,330,180,30);
         panel.add(generarComprobante);
 
         ActionListener seleccionTarjeta = new ActionListener(){
@@ -147,67 +157,59 @@ public class PayView extends JFrame{
     private void camposDePago(){
 
         //Tarjeta
-        tarjetaHabiente = new JLabel("Nombre del tarjetahabiente");
-        tarjetaHabiente.setBounds(30, 230, 180, 30);
-        panel.add(tarjetaHabiente);
-
-        campoTarjetaHabiente = new JTextField();
-        campoTarjetaHabiente.setBounds(30,260,180,30);
-        campos.add(campoTarjetaHabiente);
-        panel.add(campoTarjetaHabiente);
 
         numeroTarjeta = new JLabel("Numero de tarjeta de credito");
-        numeroTarjeta.setBounds(300, 230, 180, 30);
+        numeroTarjeta.setBounds(300, 260, 180, 30);
         panel.add(numeroTarjeta);
 
         campoNumeroTarjeta = new JTextField();
-        campoNumeroTarjeta.setBounds(300,260,180,30);
+        campoNumeroTarjeta.setBounds(300,290,180,30);
         campos.add(campoNumeroTarjeta);
         panel.add(campoNumeroTarjeta);
 
         fechaExpiracion = new JLabel("Fecha de expiracion (MM/AAAA)");
-        fechaExpiracion.setBounds(30, 290, 190, 30);
+        fechaExpiracion.setBounds(30, 260, 190, 30);
         panel.add(fechaExpiracion);
 
         campoFechaExpiracionMonth = new JTextField();
-        campoFechaExpiracionMonth.setBounds(30,320,80,30);
+        campoFechaExpiracionMonth.setBounds(30,290,80,30);
         campos.add(campoFechaExpiracionMonth);
         separador = new JLabel("/");
-        separador.setBounds(120,320,80,30);
+        separador.setBounds(120,290,80,30);
         campoFechaExpiracionYear = new JTextField();
-        campoFechaExpiracionYear.setBounds(130,320,80,30);
+        campoFechaExpiracionYear.setBounds(130,290,80,30);
         campos.add(campoFechaExpiracionYear);
         panel.add(campoFechaExpiracionMonth);
         panel.add(separador);
         panel.add(campoFechaExpiracionYear);
 
         cvc = new JLabel("CVC");
-        cvc.setBounds(300, 290, 180, 30);
+        cvc.setBounds(300, 320, 180, 30);
         panel.add(cvc);
 
         campoCVC = new JTextField();
-        campoCVC.setBounds(300,320,180,30);
+        campoCVC.setBounds(300,350,180,30);
         campos.add(campoCVC);
         panel.add(campoCVC);
 
         numeroTelefonoTarjeta = new JLabel("Numero telefonico");
-        numeroTelefonoTarjeta.setBounds(30, 350, 180, 30);
+        numeroTelefonoTarjeta.setBounds(30, 320, 180, 30);
         panel.add(numeroTelefonoTarjeta);
 
         campoTelefonoTarjeta = new JTextField();
-        campoTelefonoTarjeta.setBounds(30,380,180,30);
+        campoTelefonoTarjeta.setBounds(30,350,180,30);
         campos.add(campoTelefonoTarjeta);
         panel.add(campoTelefonoTarjeta);
 
         //oxxo
 
         numeroTelefonoOxxo = new JLabel("Numero telefonico");
-        numeroTelefonoOxxo.setBounds(30, 230, 180, 30);
+        numeroTelefonoOxxo.setBounds(30, 260, 180, 30);
         panel.add(numeroTelefonoOxxo);
 
         campoTelefonoOxxo = new JTextField();
-        campoTelefonoOxxo.setBounds(30,260,180,30);
-        campos.add(campoTelefonoOxxo);
+        campoTelefonoOxxo.setBounds(30,290,180,30);
+        //campos.add(campoTelefonoOxxo);
         panel.add(campoTelefonoOxxo);
 
         //Por defecto pago de tarjeta
@@ -219,8 +221,6 @@ public class PayView extends JFrame{
     }
 
     private void deshabilitarCampoTarjeta(){
-        tarjetaHabiente.setVisible(false);
-        campoTarjetaHabiente.setVisible(false);
         numeroTarjeta.setVisible(false);
         campoNumeroTarjeta.setVisible(false);
         fechaExpiracion.setVisible(false);
@@ -243,8 +243,6 @@ public class PayView extends JFrame{
         campoTelefonoOxxo.setVisible(false);
         generarComprobante.setVisible(false);
 
-        tarjetaHabiente.setVisible(true);
-        campoTarjetaHabiente.setVisible(true);
         numeroTarjeta.setVisible(true);
         campoNumeroTarjeta.setVisible(true);
         fechaExpiracion.setVisible(true);
@@ -260,28 +258,29 @@ public class PayView extends JFrame{
 
     private void generarComprobante(){
         if(verificarPagoOxxo() == true){
-            System.out.println("nice");
+            JOptionPane.showMessageDialog(null,"Transaccion en proceso");
             controller.setMethod("oxxo");
-            controller.phoneNumber(Long.parseLong(numeroTelefonoOxxo.getText()));
+            controller.ownerName(campoTarjetaHabiente.getText());
+            controller.phoneNumber(numeroTelefonoOxxo.getText());
             controller.pay(550.50);
         }else{
-            System.out.println("Llene todos los campos antes");
+            JOptionPane.showMessageDialog(null,"Llene todos los campos antes");
         }
     }
 
     private void pagar(){
         if(verificarPagoTarjeta() == true){
-            System.out.println("nice");
-            controller.setMethod("creditCard");
+            JOptionPane.showMessageDialog(null,"Transaccion en proceso");
+            controller.setMethod("credit-card");
             controller.ownerName(campoTarjetaHabiente.getText());
             controller.creaditCardNumer(campoNumeroTarjeta.getText());
             controller.month(Integer.parseInt(campoFechaExpiracionMonth.getText()));
             controller.year(Integer.parseInt(campoFechaExpiracionYear.getText()));
             controller.cvc(Integer.parseInt(campoCVC.getText()));
-            controller.phoneNumber(Long.parseLong(campoTelefonoTarjeta.getText()));
+            controller.phoneNumber(campoTelefonoTarjeta.getText());
             controller.pay(550.50);
         }else{
-            System.out.println("Llene todos los campos antes");
+            JOptionPane.showMessageDialog(null,"Llene todos los campos antes");
         }
     }
 
@@ -292,6 +291,7 @@ public class PayView extends JFrame{
                 camposLlenos = false;
             }
         }
+        camposLlenos = verificarNombreEscrito();
         return camposLlenos;
     }
 
@@ -300,7 +300,16 @@ public class PayView extends JFrame{
         if(campoTelefonoOxxo.getText().equals("")){
             campoLleno = false;
         }
+        campoLleno = verificarNombreEscrito();
         return campoLleno;
+    }
+
+    private boolean verificarNombreEscrito(){
+        if(campoTarjetaHabiente.getText().equals("")){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }
