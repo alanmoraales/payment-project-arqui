@@ -15,10 +15,10 @@ public class PayViewController {
     public void setMethod(String method){
         controller.setPaymentMethod(method);
     }
-    public void creaditCardNumer(String number){
+    public void creditCardNumber(String number){
         controller.addCreditCardNumber(number);
     }
-    public void ownerName(String name){controller.addUserName(name);}
+    public void userName(String name){controller.addUserName(name);}
     public void month(int month){
         controller.addCreditCardExpirationMonth(month);
     }

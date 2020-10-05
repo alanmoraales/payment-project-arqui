@@ -35,6 +35,7 @@ public class TransactionInfoMongo implements TransactionInfoDao{
 
             mongo.getCollection(collectionName).insertOne(doc);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
 

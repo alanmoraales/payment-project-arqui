@@ -89,7 +89,7 @@ public class PayView extends JFrame{
         panel.add(usoHorario);
 
         //nombre de tarjeta-habiente
-        tarjetaHabiente = new JLabel("Nombre del tarjetahabiente");
+        tarjetaHabiente = new JLabel("Nombre de usuario");
         tarjetaHabiente.setBounds(30, 130, 180, 30);
         panel.add(tarjetaHabiente);
 
@@ -257,12 +257,12 @@ public class PayView extends JFrame{
     }
 
     private void generarComprobante(){
-        if(verificarPagoOxxo() == true){
-            JOptionPane.showMessageDialog(null,"Transaccion en proceso");
+        if(verificarPagoOxxo() == true) {
             controller.setMethod("oxxo");
-            controller.ownerName(campoTarjetaHabiente.getText());
+            controller.userName(campoTarjetaHabiente.getText());
             controller.phoneNumber(numeroTelefonoOxxo.getText());
             controller.pay(550.50);
+            JOptionPane.showMessageDialog(null,"Comprobante generado con exito");
         }else{
             JOptionPane.showMessageDialog(null,"Llene todos los campos antes");
         }
@@ -270,15 +270,15 @@ public class PayView extends JFrame{
 
     private void pagar(){
         if(verificarPagoTarjeta() == true){
-            JOptionPane.showMessageDialog(null,"Transaccion en proceso");
             controller.setMethod("credit-card");
-            controller.ownerName(campoTarjetaHabiente.getText());
-            controller.creaditCardNumer(campoNumeroTarjeta.getText());
+            controller.userName(campoTarjetaHabiente.getText());
+            controller.creditCardNumber(campoNumeroTarjeta.getText());
             controller.month(Integer.parseInt(campoFechaExpiracionMonth.getText()));
             controller.year(Integer.parseInt(campoFechaExpiracionYear.getText()));
             controller.cvc(Integer.parseInt(campoCVC.getText()));
             controller.phoneNumber(campoTelefonoTarjeta.getText());
             controller.pay(550.50);
+            JOptionPane.showMessageDialog(null,"Transacción realizada con exito");
         }else{
             JOptionPane.showMessageDialog(null,"Llene todos los campos antes");
         }
