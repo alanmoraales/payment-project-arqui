@@ -10,6 +10,6 @@ public class CreditCardMethodFactory implements PaymentMethodFactory{
 
     @Override
     public PaymentMethod getInstance(PaymentDetails details){
-        return new CreditCardMethod((CreditCardMethod) details);
+        return new CreditCardMethod((CreditCardMethodDetails) details);
     }
 }

@@ -7,6 +7,7 @@ public class TransactionInfo implements ITransactionInfo {
     private String transactionId;
     private Date date;
     private String paymentConcept;
+    private String paymentMethod;
     private double amount;
 
     public TransactionInfo() {
@@ -14,6 +15,7 @@ public class TransactionInfo implements ITransactionInfo {
         this.transactionId = null;
         this.date = null;
         this.paymentConcept = null;
+        this.paymentMethod = null;
         this.amount = -1;
     }
 
@@ -43,6 +45,11 @@ public class TransactionInfo implements ITransactionInfo {
     }
 
     @Override
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    @Override
     public String getTransactionId() {
         return this.transactionId;
     }
@@ -65,5 +72,10 @@ public class TransactionInfo implements ITransactionInfo {
     @Override
     public String getPaymentConcept() {
         return this.paymentConcept;
+    }
+
+    @Override
+    public String getPaymentMethod() {
+        return this.paymentMethod;
     }
 }

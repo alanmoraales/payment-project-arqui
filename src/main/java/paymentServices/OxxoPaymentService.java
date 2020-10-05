@@ -6,5 +6,5 @@ public interface OxxoPaymentService {
     /**
      * @return the transaction id
      */
-    String payWithOxoo(float amount, OxxoMethodDetails details);
+    String payWithOxoo(double amount, OxxoMethodDetails details);
 }

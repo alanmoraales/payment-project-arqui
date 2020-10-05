@@ -8,7 +8,8 @@ public class FullPaymentDetails implements CreditCardMethodDetails, OxxoMethodDe
     private String craditCardOwnerName;
     private Date creditcardExpirationDate = new Date(1900,0,1);
     private String creditCardCVC;
-    private long phoneNumber;
+    private String clientName = "oxxo";
+    private String phoneNumber;
 
     @Override
     public String getCreditCardNumber() {
@@ -36,7 +37,7 @@ public class FullPaymentDetails implements CreditCardMethodDetails, OxxoMethodDe
     }
 
     @Override
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -66,7 +67,17 @@ public class FullPaymentDetails implements CreditCardMethodDetails, OxxoMethodDe
     }
 
     @Override
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String getClientName() {
+        return this.clientName;
+    }
+
+    @Override
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 }

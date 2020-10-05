@@ -1,14 +1,20 @@
 package paymentMethods;
 
-public class CreditCardMethod implements PaymentMethod {
-    private CreditCardMethod details;
+import paymentDetails.CreditCardMethodDetails;
+import paymentServices.CreditCardPaymentService;
+import paymentServices.FakeOpenPay;
 
-    public CreditCardMethod(CreditCardMethod details) {
+public class CreditCardMethod implements PaymentMethod {
+    private CreditCardMethodDetails details;
+    private CreditCardPaymentService paymentService;
+
+    public CreditCardMethod(CreditCardMethodDetails details) {
         this.details = details;
+        this.paymentService = new FakeOpenPay();
     }
 
     @Override
-    public String pay(float amount) {
-        return null;
+    public String pay(double amount) {
+        return paymentService.payWithCreditCard(amount, details);
     }
 }

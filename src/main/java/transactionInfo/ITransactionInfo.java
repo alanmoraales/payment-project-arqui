@@ -8,9 +8,11 @@ public interface ITransactionInfo {
     void setDate(Date date);
     void setClientName(String name);
     void setPaymentConcept(String concept);
+    void setPaymentMethod(String paymentMethod);
     String getTransactionId();
     double getAmount();
     Date getDate();
     String getClientName();
     String getPaymentConcept();
+    String getPaymentMethod();
 }

@@ -6,5 +6,5 @@ public interface CreditCardPaymentService {
     /**
      * @return the transaction id
      */
-    String payWithCreditCard(float amount, CreditCardMethodDetails details);
+    String payWithCreditCard(double amount, CreditCardMethodDetails details);
 }
