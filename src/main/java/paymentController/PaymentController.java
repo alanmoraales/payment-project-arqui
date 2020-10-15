@@ -1,13 +1,17 @@
 package paymentController;
 
 public interface PaymentController {
-    void setPaymentMethod(String methodName);
-    void addCreditCardNumber(String cardNumber);
-    void addCreditCardOwnerName(String ownerName);
-    void addCreditCardExpirationMonth(int month);
-    void addCreditCardExpirationYear(int year);
-    void addCreditCardCVC(int cvc);
-    void addUserPhoneNumber(String phoneNumber);
-    void addUserName(String userName);
-    String pay(double amount);
+    void setPaymentMethod(String method);
+    void addCustomerName(String name);
+    void addPhoneNumber(String phoneNumber);
+    void addCardToken(String token);
+    void addAmount(double amount);
+    void addSessionId(String sessionId);
+    void addDescription(String description);
+
+    /***
+     *
+     * @return the transaction status
+     */
+    String pay();
 }

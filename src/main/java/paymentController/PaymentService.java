@@ -8,6 +8,7 @@ import paymentMethodFactory.OxxoMethodFactory;
 import paymentMethodFactory.PaymentMethodFactory;
 import paymentMethods.PaymentMethod;
 import transactionInfo.ITransactionInfo;
+import transactionInfo.Transaction;
 import transactionInfo.TransactionInfo;
 
 import java.util.Date;
@@ -37,54 +38,50 @@ public class PaymentService implements PaymentController {
     }
 
     @Override
-    public void addCreditCardNumber(String cardNumber) {
-        this.paymentDetails.setCreditCardNumber(cardNumber);
+    public void addCustomerName(String name) {
+        this.paymentDetails.setCustomerName(name);
     }
 
     @Override
-    public void addCreditCardOwnerName(String ownerName) {
-        this.paymentDetails.setCreditCardOwnerName(ownerName);
-    }
-
-    @Override
-    public void addCreditCardExpirationMonth(int month) {
-        this.paymentDetails.setCreditCardExpirationMonth(month);
-    }
-
-    @Override
-    public void addCreditCardExpirationYear(int year) {
-        this.paymentDetails.setCreditCardExpirationYear(year);
-    }
-
-    @Override
-    public void addCreditCardCVC(int cvc) {
-        this.paymentDetails.setCreditCardCVC(String.valueOf(cvc));
-    }
-
-    @Override
-    public void addUserPhoneNumber(String phoneNumber) {
+    public void addPhoneNumber(String phoneNumber) {
         this.paymentDetails.setPhoneNumber(phoneNumber);
     }
 
     @Override
-    public void addUserName(String userName) {
-        this.paymentDetails.setClientName(userName);
+    public void addCardToken(String token) {
+        this.paymentDetails.setCardToken(token);
     }
 
     @Override
-    public String pay(double amount) {
+    public void addAmount(double amount) {
+        this.paymentDetails.setAmount(amount);
+    }
+
+    @Override
+    public void addSessionId(String sessionId) {
+        this.paymentDetails.setSessionId(sessionId);
+    }
+
+    @Override
+    public void addDescription(String description) {
+        this.paymentDetails.setDescription(description);
+    }
+
+    @Override
+    public String pay() {
         TransactionInfoDao database = new TransactionInfoMongo();
         PaymentMethod paymentMethod = this.paymentMethod.getInstance(this.paymentDetails);
 
-        String transactionId =  paymentMethod.pay(amount);
+        Transaction transaction =  paymentMethod.pay();
 
-        this.transactionInfo.setAmount(amount);
-        this.transactionInfo.setClientName(this.paymentDetails.getClientName());
+        this.transactionInfo.setAmount(this.paymentDetails.getAmount());
+        this.transactionInfo.setClientName(this.paymentDetails.getCustomerName());
         this.transactionInfo.setDate(new Date());
         this.transactionInfo.setPaymentConcept("Publicación de casa");
-        this.transactionInfo.setTransactionId(transactionId);
+        this.transactionInfo.setTransactionId(transaction.getId());
+        this.transactionInfo.setTransactionStatus(transaction.getStatus());
         database.save(this.transactionInfo);
 
-        return transactionId;
+        return transaction.getStatus();
     }
 }
