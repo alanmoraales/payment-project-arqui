@@ -3,6 +3,7 @@ package transactionInfo;
 import java.util.Date;
 
 public interface ITransactionInfo {
+    void setTransactionStatus(String status);
     void setTransactionId(String id);
     void setAmount(double amount);
     void setDate(Date date);
@@ -15,4 +16,5 @@ public interface ITransactionInfo {
     String getClientName();
     String getPaymentConcept();
     String getPaymentMethod();
+    String getTransactionStatus();
 }
