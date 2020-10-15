@@ -2,7 +2,8 @@ package paymentMethods;
 
 import paymentDetails.CreditCardMethodDetails;
 import paymentServices.CreditCardPaymentService;
-import paymentServices.FakeOpenPay;
+import paymentServices.OpenPay;
+import transactionInfo.Transaction;
 
 public class CreditCardMethod implements PaymentMethod {
     private CreditCardMethodDetails details;
@@ -10,11 +11,11 @@ public class CreditCardMethod implements PaymentMethod {
 
     public CreditCardMethod(CreditCardMethodDetails details) {
         this.details = details;
-        this.paymentService = new FakeOpenPay();
+        this.paymentService = new OpenPay();
     }
 
     @Override
-    public String pay(double amount) {
+    public Transaction pay() {
         return paymentService.payWithCreditCard(amount, details);
     }
 }
