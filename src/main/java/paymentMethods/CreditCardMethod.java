@@ -16,6 +16,6 @@ public class CreditCardMethod implements PaymentMethod {
 
     @Override
     public Transaction pay() {
-        return paymentService.payWithCreditCard(amount, details);
+        return paymentService.payWithCreditCard(details);
     }
 }
