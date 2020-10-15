@@ -1,8 +1,9 @@
 package paymentMethods;
 
 import paymentDetails.OxxoMethodDetails;
-import paymentServices.FakeOpenPay;
+import paymentServices.OxxoPay;
 import paymentServices.OxxoPaymentService;
+import transactionInfo.Transaction;
 
 public class OxxoMethod implements PaymentMethod {
     private OxxoMethodDetails details;
@@ -10,11 +11,11 @@ public class OxxoMethod implements PaymentMethod {
 
     public OxxoMethod(OxxoMethodDetails details) {
         this.details = details;
-        this.paymentService = new FakeOpenPay();
+        this.paymentService = new OxxoPay();
     }
 
     @Override
-    public String pay(double amount) {
-        return paymentService.payWithOxoo(amount, details);
+    public Transaction pay() {
+        return paymentService.payWithOxoo(details);
     }
 }
