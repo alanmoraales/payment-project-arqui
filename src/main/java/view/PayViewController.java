@@ -11,22 +11,25 @@ public class PayViewController {
     private FrontOpenPayLibrary openpay;
     private String token;
 
-    public PayViewController(PaymentController controller, String userID) {
-        view = new PayView(this,userID);
-        view.setVisible(true);
+    private final String merchantId = "fakeMerchantId";
+    private final String publicOpenpaykey = "fakePublicKey";
+
+    public PayViewController(PaymentController controller) {
+        view = new PayView(this);
         this.controller = controller;
         this.openpay = new FrontOpenPayLibrary();
-        openpay.setId(userID);
-        openpay.setApiKey(OpenPayConfig.PRIVATE_KEY);
-        openpay.generateSessionId();
+        openpay.setId(this.merchantId);
+        openpay.setApiKey(this.publicOpenpaykey);
+        this.sessionId = openpay.generateSessionId();
         addSessionId();
+        view.setVisible(true);
     }
 
     public void addSessionId(){
         controller.addSessionId(sessionId);
     }
     public void addCardToken(String ownerName, String cardNumber, int expirationMonth, int expirationYear, int cvc) {
-        token = openpay.generateCraditToken(ownerName,cardNumber,expirationMonth,expirationYear,cvc);
+        token = openpay.generateToken(ownerName,cardNumber,expirationMonth,expirationYear,cvc);
         controller.addCardToken(token);
     }
     public void addConstumerName(String name){

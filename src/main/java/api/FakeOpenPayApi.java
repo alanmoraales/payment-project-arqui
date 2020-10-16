@@ -25,7 +25,7 @@ public class FakeOpenPayApi implements BackEndMethods, FrontEndMethods {
 
     @Override
     public Charge createCharge() {
-        return null;
+        return new Charge("success", "978212ds23");
     }
 
     @Override

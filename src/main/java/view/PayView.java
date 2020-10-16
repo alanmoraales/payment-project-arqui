@@ -11,7 +11,6 @@ public class PayView extends JFrame{
     private ArrayList<String> salida;
     private JPanel panel;
     private PayViewController controller;
-    private String userID;
     private JLabel nombreDueniotarjeta;
     private JTextField campoDueniooTarjeta;
 
@@ -35,9 +34,8 @@ public class PayView extends JFrame{
     private JTextField campoTelefonoOxxo;
     private JButton generarComprobante;
 
-    public PayView(PayViewController controller, String userID){
+    public PayView(PayViewController controller){
         this.controller = controller;
-        this.userID = userID;
         setSize(540,500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

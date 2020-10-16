@@ -1,13 +1,10 @@
 package view;
 
 import api.FakeOpenPayApi;
-import api.FrontEndMethods;
-import config.OpenPayConfig;
 
 public class FrontOpenPayLibrary{
-    private String fakeSessionId;
     private FakeOpenPayApi openpay;
-    private  String Clientid;
+    private  String clientId;
     private  String apiKey;
 
     public FrontOpenPayLibrary(){
@@ -15,7 +12,7 @@ public class FrontOpenPayLibrary{
     }
 
     public void setId(String cliendID){
-        this.Clientid = cliendID;
+        this.clientId = cliendID;
     }
 
     public void setApiKey(String apiKey){
@@ -23,11 +20,10 @@ public class FrontOpenPayLibrary{
     }
 
     public String generateSessionId(){
-        fakeSessionId = openpay.generateSessionId(Clientid, apiKey);
-        return fakeSessionId;
+        return openpay.generateSessionId(clientId, apiKey);
     }
 
-    public String generateCraditToken(String ownerName, String cardNumber, int expirationMonth, int expirationYear, int cvc){
+    public String generateToken(String ownerName, String cardNumber, int expirationMonth, int expirationYear, int cvc){
         return openpay.generateCreditCardToken(ownerName, cardNumber, expirationMonth, expirationYear, cvc);
     }
 }

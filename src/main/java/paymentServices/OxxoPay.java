@@ -6,6 +6,6 @@ import transactionInfo.Transaction;
 public class OxxoPay implements OxxoPaymentService {
     @Override
     public Transaction payWithOxoo(OxxoMethodDetails details) {
-        return null;
+        return new Transaction("oxxo1234", "success");
     }
 }
