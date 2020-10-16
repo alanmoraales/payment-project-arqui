@@ -11,6 +11,8 @@ public class PayView extends JFrame{
     private ArrayList<String> salida;
     private JPanel panel;
     private PayViewController controller;
+    private JLabel nombreDueniotarjeta;
+    private JTextField campoDueniooTarjeta;
 
     //campo tarjeta
     private JLabel tarjetaHabiente;
@@ -58,34 +60,34 @@ public class PayView extends JFrame{
 
     private void infoPublicacion(){
         //left
-        JLabel concepto = new JLabel("Conceptio de pago:");
-        concepto.setBounds(30,10,150,30);
+        JLabel concepto = new JLabel("Concepto de pago: Compra");
+        concepto.setBounds(30,10,200,30);
         panel.add(concepto);
 
-        JLabel tipoBien = new JLabel("Tipo de bien:");
+        JLabel tipoBien = new JLabel("Tipo de bien: inmueble");
         tipoBien.setBounds(30,40,150,30);
         panel.add(tipoBien);
 
-        JLabel idEvento = new JLabel("ID de evento:");
+        JLabel idEvento = new JLabel("ID de evento:32432");
         idEvento.setBounds(30,70,150,30);
         panel.add(idEvento);
 
-        JLabel importe = new JLabel("Importe del servicio:");
+        JLabel importe = new JLabel("Importe del servicio:$550");
         importe.setBounds(30,100,150,30);
         panel.add(importe);
 
         //right
 
-        JLabel fechaAdj = new JLabel("Fecha de adjudicacion:");//inicializo con "profesores
-        fechaAdj.setBounds(300,10,150,30);
+        JLabel fechaAdj = new JLabel("Fecha de adjudicacion: Hoy");//inicializo con "profesores
+        fechaAdj.setBounds(300,10,200,30);
         panel.add(fechaAdj);
 
-        JLabel horaAdj = new JLabel("Hora de adjudicacion:");//inicializo con "profesores
-        horaAdj.setBounds(300,40,150,30);
+        JLabel horaAdj = new JLabel("Hora de adjudicacion: Aurita");//inicializo con "profesores
+        horaAdj.setBounds(300,40,200,30);
         panel.add(horaAdj);
 
-        JLabel usoHorario = new JLabel("Huso-horario deseado:");//inicializo con "profesores
-        usoHorario.setBounds(300,70,150,30);
+        JLabel usoHorario = new JLabel("Huso-horario deseado: Mex GMT/UTC");//inicializo con "profesores
+        usoHorario.setBounds(300,70,230,30);
         panel.add(usoHorario);
 
         //nombre de tarjeta-habiente
@@ -97,6 +99,16 @@ public class PayView extends JFrame{
         campoTarjetaHabiente.setBounds(30,160,180,30);
         campos.add(campoTarjetaHabiente);
         panel.add(campoTarjetaHabiente);
+
+        nombreDueniotarjeta = new JLabel("Titular de la tarjeta");
+        nombreDueniotarjeta.setBounds(300, 130, 180, 30);
+        panel.add(nombreDueniotarjeta);
+
+        campoDueniooTarjeta = new JTextField();
+        campoDueniooTarjeta.setBounds(300,160,180,30);
+        campos.add(campoDueniooTarjeta);
+        panel.add(campoDueniooTarjeta);
+
     }
 
     private void tiposPago(){
@@ -232,6 +244,8 @@ public class PayView extends JFrame{
         numeroTelefonoTarjeta.setVisible(false);
         campoTelefonoTarjeta.setVisible(false);
         pagar.setVisible(false);
+        nombreDueniotarjeta.setVisible(false);
+        campoDueniooTarjeta.setVisible(false);
 
         numeroTelefonoOxxo.setVisible(true);
         campoTelefonoOxxo.setVisible(true);
@@ -254,14 +268,18 @@ public class PayView extends JFrame{
         numeroTelefonoTarjeta.setVisible(true);
         campoTelefonoTarjeta.setVisible(true);
         pagar.setVisible(true);
+        nombreDueniotarjeta.setVisible(true);
+        campoDueniooTarjeta.setVisible(true);
     }
 
     private void generarComprobante(){
         if(verificarPagoOxxo() == true) {
             controller.setMethod("oxxo");
-            controller.userName(campoTarjetaHabiente.getText());
-            controller.phoneNumber(numeroTelefonoOxxo.getText());
-            controller.pay(550.50);
+            controller.addConstumerName(campoDueniooTarjeta.getText());
+            controller.addPhoneNumber(campoTelefonoOxxo.getText());
+            controller.addAmount(550.50);
+            controller.addDescription("pago de con oxxo");
+            controller.pay();
             JOptionPane.showMessageDialog(null,"Comprobante generado con exito");
         }else{
             JOptionPane.showMessageDialog(null,"Llene todos los campos antes");
@@ -271,14 +289,17 @@ public class PayView extends JFrame{
     private void pagar(){
         if(verificarPagoTarjeta() == true){
             controller.setMethod("credit-card");
-            controller.userName(campoTarjetaHabiente.getText());
-            controller.creditCardNumber(campoNumeroTarjeta.getText());
-            controller.month(Integer.parseInt(campoFechaExpiracionMonth.getText()));
-            controller.year(Integer.parseInt(campoFechaExpiracionYear.getText()));
-            controller.cvc(Integer.parseInt(campoCVC.getText()));
-            controller.phoneNumber(campoTelefonoTarjeta.getText());
-            controller.pay(550.50);
-            JOptionPane.showMessageDialog(null,"Transacción realizada con exito");
+            controller.addCardToken(campoDueniooTarjeta.getText(),
+                    campoNumeroTarjeta.getText(),
+                    Integer.parseInt(campoFechaExpiracionMonth.getText()),
+                    Integer.parseInt(campoFechaExpiracionYear.getText()),
+                    Integer.parseInt(campoCVC.getText()));
+            controller.addConstumerName(campoDueniooTarjeta.getText());
+            controller.addPhoneNumber(campoTelefonoOxxo.getText());
+            controller.addAmount(550.50);
+            controller.addDescription("pago de inmueble con tarjeta");
+            controller.pay();
+            JOptionPane.showMessageDialog(null,"Transaccion realizada con exito");
         }else{
             JOptionPane.showMessageDialog(null,"Llene todos los campos antes");
         }
