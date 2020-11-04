@@ -31,10 +31,12 @@ public class TransactionInfoMongo implements TransactionInfoDao{
                     .append("paymentMethod", transactionInfo.getPaymentMethod())
                     .append("date", transactionInfo.getDate())
                     .append("concept", transactionInfo.getPaymentConcept())
-                    .append("amount", transactionInfo.getAmount());
+                    .append("amount", transactionInfo.getAmount())
+                    .append("status", transactionInfo.getTransactionStatus());
 
             mongo.getCollection(collectionName).insertOne(doc);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
 

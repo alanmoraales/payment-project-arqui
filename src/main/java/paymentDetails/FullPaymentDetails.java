@@ -4,36 +4,17 @@ import java.util.Date;
 
 public class FullPaymentDetails implements CreditCardMethodDetails, OxxoMethodDetails, PaymentDetails {
 
-    private String creaditcardNumber;
-    private String craditCardOwnerName;
-    private Date creditcardExpirationDate = new Date(1900,0,1);
-    private String creditCardCVC;
-    private String clientName = "oxxo";
+    private String customerName;
     private String phoneNumber;
+    private String cardToken;
+    private double amount;
+    private String sessionId;
+    private String description;
+
 
     @Override
-    public String getCreditCardNumber() {
-        return creaditcardNumber;
-    }
-
-    @Override
-    public String getCreditCardOwnerName() {
-        return craditCardOwnerName;
-    }
-
-    @Override
-    public int getCreditCardExpirationMonth() {
-        return creditcardExpirationDate.getMonth();
-    }
-
-    @Override
-    public int getCreditCardExpirationYear() {
-        return creditcardExpirationDate.getYear();
-    }
-
-    @Override
-    public String getCreditCardCVC() {
-        return creditCardCVC;
+    public String getCustomerName() {
+        return this.customerName;
     }
 
     @Override
@@ -42,28 +23,28 @@ public class FullPaymentDetails implements CreditCardMethodDetails, OxxoMethodDe
     }
 
     @Override
-    public void setCreditCardNumber(String creditCardNumber) {
-        this.creaditcardNumber = creditCardNumber;
+    public String getCardToken() {
+        return this.cardToken;
     }
 
     @Override
-    public void setCreditCardOwnerName(String creditCardOwnerName) {
-        this.craditCardOwnerName = creditCardOwnerName;
+    public double getAmount() {
+        return this.amount;
     }
 
     @Override
-    public void setCreditCardExpirationMonth(int month) {
-        this.creditcardExpirationDate.setMonth(month);
+    public String getSessionId() {
+        return this.sessionId;
     }
 
     @Override
-    public void setCreditCardExpirationYear(int year) {
-        this.creditcardExpirationDate.setYear(year);
+    public String getDescription() {
+        return this.description;
     }
 
     @Override
-    public void setCreditCardCVC(String creditCardCVC) {
-        this.creditCardCVC = creditCardCVC;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     @Override
@@ -72,12 +53,22 @@ public class FullPaymentDetails implements CreditCardMethodDetails, OxxoMethodDe
     }
 
     @Override
-    public String getClientName() {
-        return this.clientName;
+    public void setCardToken(String cardToken) {
+        this.cardToken = cardToken;
     }
 
     @Override
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    @Override
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

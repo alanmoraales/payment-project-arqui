@@ -1,24 +1,13 @@
 package paymentDetails;
 
 public interface PaymentDetails {
-    void setCreditCardNumber(String creditCardNumber);
-    void setCreditCardOwnerName(String creditCardOwnerName);
-    /**
-     *
-     * @param month card expiration month in the same format as the card
-     *              (i.e, if a card expiration date is 4/25, then you'll pass a 4)
-     *              month - the month between 0-11
-     */
-    void setCreditCardExpirationMonth(int month);
-
-    /**
-     *
-     * @param year card expiration year in the same format as the card
-     *      *              (i.e, if a card expiration date is 4/25, then you'll pass a 25)
-     */
-    void setCreditCardExpirationYear(int year);
-    void setCreditCardCVC(String creditCardCVC);
+    void setCustomerName(String customerName);
     void setPhoneNumber(String phoneNumber);
-    String getClientName();
-    void setClientName(String clientName);
+    void setCardToken(String cardToken);
+    void setAmount(double amount);
+    void setSessionId(String sessionId);
+    void setDescription(String description);
+    String getCustomerName();
+    double getAmount();
+    String getDescription();
 }

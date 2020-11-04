@@ -1,10 +1,11 @@
 package paymentServices;
 
 import paymentDetails.OxxoMethodDetails;
+import transactionInfo.Transaction;
 
 public interface OxxoPaymentService {
     /**
      * @return the transaction id
      */
-    String payWithOxoo(double amount, OxxoMethodDetails details);
+    Transaction payWithOxoo(OxxoMethodDetails details);
 }

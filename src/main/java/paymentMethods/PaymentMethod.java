@@ -1,9 +1,7 @@
 package paymentMethods;
 
+import transactionInfo.Transaction;
+
 public interface PaymentMethod {
-    /**
-     *
-     * @return the transaction id
-     */
-    String pay(double amount);
+    Transaction pay();
 }

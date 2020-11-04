@@ -2,5 +2,7 @@ package paymentDetails;
 
 public interface OxxoMethodDetails {
     String getPhoneNumber();
-    String getClientName();
+    String getCustomerName();
+    double getAmount();
+    String getDescription();
 }

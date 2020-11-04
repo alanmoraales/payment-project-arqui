@@ -9,6 +9,7 @@ public class TransactionInfo implements ITransactionInfo {
     private String paymentConcept;
     private String paymentMethod;
     private double amount;
+    private String transactionStatus;
 
     public TransactionInfo() {
         this.clientName = null;
@@ -17,6 +18,12 @@ public class TransactionInfo implements ITransactionInfo {
         this.paymentConcept = null;
         this.paymentMethod = null;
         this.amount = -1;
+        this.transactionStatus = null;
+    }
+
+    @Override
+    public void setTransactionStatus(String status) {
+        this.transactionStatus = status;
     }
 
     @Override
@@ -77,5 +84,10 @@ public class TransactionInfo implements ITransactionInfo {
     @Override
     public String getPaymentMethod() {
         return this.paymentMethod;
+    }
+
+    @Override
+    public String getTransactionStatus() {
+        return this.transactionStatus;
     }
 }
