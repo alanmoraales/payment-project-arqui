@@ -101,11 +101,11 @@ public class PayView extends JFrame{
         panel.add(campoTarjetaHabiente);
 
         nombreDueniotarjeta = new JLabel("Titular de la tarjeta");
-        nombreDueniotarjeta.setBounds(300, 130, 180, 30);
+        nombreDueniotarjeta.setBounds(30, 260, 190, 30);
         panel.add(nombreDueniotarjeta);
 
         campoDueniooTarjeta = new JTextField();
-        campoDueniooTarjeta.setBounds(300,160,180,30);
+        campoDueniooTarjeta.setBounds(30, 290, 190, 30);
         campos.add(campoDueniooTarjeta);
         panel.add(campoDueniooTarjeta);
 
@@ -180,16 +180,16 @@ public class PayView extends JFrame{
         panel.add(campoNumeroTarjeta);
 
         fechaExpiracion = new JLabel("Fecha de expiracion (MM/AAAA)");
-        fechaExpiracion.setBounds(30, 260, 190, 30);
+        fechaExpiracion.setBounds(30, 320, 190, 30);
         panel.add(fechaExpiracion);
 
         campoFechaExpiracionMonth = new JTextField();
-        campoFechaExpiracionMonth.setBounds(30,290,80,30);
+        campoFechaExpiracionMonth.setBounds(30,350,80,30);
         campos.add(campoFechaExpiracionMonth);
         separador = new JLabel("/");
-        separador.setBounds(120,290,80,30);
+        separador.setBounds(120,350,80,30);
         campoFechaExpiracionYear = new JTextField();
-        campoFechaExpiracionYear.setBounds(130,290,80,30);
+        campoFechaExpiracionYear.setBounds(130,350,80,30);
         campos.add(campoFechaExpiracionYear);
         panel.add(campoFechaExpiracionMonth);
         panel.add(separador);
@@ -205,11 +205,11 @@ public class PayView extends JFrame{
         panel.add(campoCVC);
 
         numeroTelefonoTarjeta = new JLabel("Numero telefonico");
-        numeroTelefonoTarjeta.setBounds(30, 320, 180, 30);
+        numeroTelefonoTarjeta.setBounds(30, 380, 180, 30);
         panel.add(numeroTelefonoTarjeta);
 
         campoTelefonoTarjeta = new JTextField();
-        campoTelefonoTarjeta.setBounds(30,350,180,30);
+        campoTelefonoTarjeta.setBounds(30,410,180,30);
         campos.add(campoTelefonoTarjeta);
         panel.add(campoTelefonoTarjeta);
 
@@ -275,7 +275,7 @@ public class PayView extends JFrame{
     private void generarComprobante(){
         if(verificarPagoOxxo() == true) {
             controller.setMethod("oxxo");
-            controller.addConstumerName(campoDueniooTarjeta.getText());
+            controller.addConstumerName(campoTarjetaHabiente.getText());
             controller.addPhoneNumber(campoTelefonoOxxo.getText());
             controller.addAmount(550.50);
             controller.addDescription("pago de con oxxo");
@@ -289,7 +289,7 @@ public class PayView extends JFrame{
     private void pagar(){
         if(verificarPagoTarjeta() == true){
             controller.setMethod("credit-card");
-            controller.addCardToken(campoDueniooTarjeta.getText(),
+            controller.addCardToken(campoTarjetaHabiente.getText(),
                     campoNumeroTarjeta.getText(),
                     Integer.parseInt(campoFechaExpiracionMonth.getText()),
                     Integer.parseInt(campoFechaExpiracionYear.getText()),
