@@ -1,9 +1,11 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 
 public class PayView extends JFrame{
 
@@ -34,6 +36,11 @@ public class PayView extends JFrame{
     private JTextField campoTelefonoOxxo;
     private JButton generarComprobante;
 
+    private JOptionPane messageDialog;
+    private final Color backgroundColor = Color.DARK_GRAY;
+    private final Color textColor = Color.lightGray;
+    private final Color buttonBackgroundColor = Color.blue;
+
     public PayView(PayViewController controller){
         this.controller = controller;
         setSize(540,500);
@@ -45,10 +52,21 @@ public class PayView extends JFrame{
     }
 
     private void contenido(){
+        applyTheme();
         panel();
         infoPublicacion();
         tiposPago();
         camposDePago();
+        messageDialog = new JOptionPane();
+    }
+
+    private void applyTheme() {
+        UIManager uiManager = new UIManager();
+        uiManager.put("OptionPane.background", backgroundColor);
+        uiManager.put("Panel.background", backgroundColor);
+        uiManager.put("Label.foreground", textColor);
+        uiManager.put("Button.foreground", textColor);
+        uiManager.put("Button.background", buttonBackgroundColor);
     }
 
 
@@ -280,10 +298,17 @@ public class PayView extends JFrame{
             controller.addAmount(550.50);
             controller.addDescription("pago de con oxxo");
             controller.pay();
-            JOptionPane.showMessageDialog(null,"Comprobante generado con exito");
-        }else{
-            JOptionPane.showMessageDialog(null,"Llene todos los campos antes");
+            showMessageDialog("Comprobante generado con exito");
+        } else {
+            showMessageDialog("Llene todos los campos antes");
         }
+    }
+    
+    private void showMessageDialog(String message) {
+        JPanel panel = new JPanel();
+        JLabel messageLabel = new JLabel(message);
+        panel.add(messageLabel);
+        JOptionPane.showMessageDialog(null, panel, "message", JOptionPane.OK_OPTION);
     }
 
     private void pagar(){
@@ -299,9 +324,9 @@ public class PayView extends JFrame{
             controller.addAmount(550.50);
             controller.addDescription("pago de inmueble con tarjeta");
             controller.pay();
-            JOptionPane.showMessageDialog(null,"Transaccion realizada con exito");
+            showMessageDialog("Transaccion realizada con exito");
         }else{
-            JOptionPane.showMessageDialog(null,"Llene todos los campos antes");
+            showMessageDialog("Llene todos los campos antes");
         }
     }
 
